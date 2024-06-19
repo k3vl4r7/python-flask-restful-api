@@ -16,6 +16,15 @@ class User(db.Model):
 def index():
     return jsonify({'message': 'Flask App Running!'})
 
+@app.route('/users', methods=['GET'])
+def get_users():
+    conn = create_connection()
+    cur = conn.cursor()
+    cur.exec('SELECT * FROM users')
+    rows = cur.fetchall()
+    conn.close()
+    return jsonify({'users': rows})
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
