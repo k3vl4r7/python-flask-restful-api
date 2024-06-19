@@ -1,2 +1,2 @@
 # python-flask-restful-api
-a restful api made with python
+a simple restful api that interacts with a sqlite database
