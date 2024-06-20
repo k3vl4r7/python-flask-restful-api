@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -31,7 +31,7 @@ def add_user():
         data = request.get_json()
         new_user = User(username=data['username'], email=data['email'])
         db.session.add(new_user)
-        db_session.commit()
+        db.session.commit()
         return jsonify({'message': 'User added successfully'}), 201
     except SQLAlchemyError as e:
         db.session.rollback()
